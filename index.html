@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dashboard</title>
+    <meta charset="UTF-8">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <meta content="3 days" name="revisit-after">
+    <!-- build:css /dashboard/styles/main.css-->
+    <link href="/dashboard/styles/foundation.min.css" rel="stylesheet">
+    <link href="/dashboard/styles/normalize.css" rel="stylesheet">
+    <link href="/dashboard/styles/font-awesome.css" rel="stylesheet">
+    <link href="/dashboard/styles/radio.css" rel="stylesheet">
+    <link href="/dashboard/styles/jquery.gridster.css" rel="stylesheet">
+    <link href="/dashboard/styles/main.css" rel="stylesheet">
+    <!-- endbuild-->
+    <div id="loading"></div>
+    <div id="content">
+      <div id="edit-delete-modal" data-reveal class="reveal-modal medium">
+        <form id="form">
+          <div class="row">
+            <div class="small-8 columns small-centered">
+              <label>Edit Widget Name
+                <input id="name-change" name="Name Change" type="text" placeholder="New Widget Name">
+              </label><a class="button left tiny alert remove-widget">Remove Widget</a><a class="button right tiny submit-name-change">Save Changes</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-8 columns small-centered"><span style="display:block; margin:0 auto; text-align:center; font-weight:normal">Select Time Interval</span>
+              <div id="sort-by-input">
+                <input id="daily" name="options" type="radio" checked>
+                <label for="daily">Daily</label>
+                <input id="weekly" name="options" type="radio">
+                <label for="weekly">Weekly</label>
+                <input id="monthly" name="options" type="radio">
+                <label for="monthly">Monthly</label>
+                <input id="yearly" name="options" type="radio">
+                <label for="yearly">Yearly</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="base-compare-modal" data-reveal class="reveal-modal medium">
+        <div class="row">
+          <div class="small-8 columns small-centered">
+            <label>Base</label>
+            <select name="base">
+              <option value="impressions">Impressions</option>
+              <option value="registered-users">Registered Users</option>
+              <option value="new-users">New Users</option>
+            </select>
+            <label>Comparison</label>
+            <select name="comparison">
+              <option value="new-users">New Users</option>
+              <option value="registered-users">Registered Users</option>
+              <option value="impressions">Impressions</option>
+            </select>
+            <div id="compare-sort">
+              <input id="daily" name="options" type="radio" checked>
+              <label for="daily">Daily</label>
+              <input id="weekly" name="options" type="radio">
+              <label for="weekly">Weekly</label>
+              <input id="monthly" name="options" type="radio">
+              <label for="monthly">Monthly</label>
+              <input id="yearly" name="options" type="radio">
+              <label for="yearly">Yearly</label>
+            </div>
+            <div class="button-wrapper"><a id="submit-compare" class="button tiny">Submit</a></div>
+          </div>
+        </div>
+      </div>
+      <nav data-topbar class="top-bar">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Dashboard</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+        <section class="top-bar-section">
+          <ul class="right">
+            <li id="add-widget" class="has-dropdown"><a href="#">Add Widget</a>
+              <ul id="widget-type" class="dropdown">
+                <li id="impressions-li" data-dd="1"><a href="#" id="add-impressions-widget">Impressions</a></li>
+                <li id="online-users-li" data-dd="3"><a href="#" id="add-online-users-widget">Online Users</a></li>
+                <li id="new-users-li" data-dd="2"><a href="#" id="add-new-users-widget">New Users</a></li>
+                <li id="hotspot-maps-li" data-dd="5"><a href="#" id="add-hotspot-maps-widget">Hotspot Maps</a></li>
+                <li id="pie-chart-li" data-dd="6"><a href="#" id="add-pie-chart-widget">Pie Chart</a></li>
+                <li id="table-li" data-dd="4"><a href="#" id="add-table-widget">Overview Widget</a></li>
+                <li id="wifi-area-li" data-dd="10"><a href="#" id="add-wifi-area-widget">Wifi Areas</a></li>
+                <li id="comparison-li" data-dd="11"><a href="#" id="add-comparison-widget">Comparison Widget</a></li>
+                <li id="quick-action-li" data-dd="12"><a href="#" id="add-quick-action-widget">Quick Action Widget</a></li>
+                <li id="customer-loyalty-li" data-dd="13"><a href="#" id="add-customer-loyalty-widget">Customer Loyalty</a></li>
+              </ul>
+            </li>
+            <li><a href="#" id="reset-widgets">Reset Widgets</a></li>
+            <li class="has-dropdown"><a href="#"><i class="fa fa-bell"></i></a>
+              <ul class="dropdown">
+                <li><a href="#">Alert Items  </a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>
+      <div class="tabs-content vertical">
+        <div id="overview" class="content active">
+          <div class="gridster">
+            <ul>
+              <li data-li="1" data-row="1" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="1" class="left">Impressions</span><span class="right"><a href="#" data-anchor-click="1" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="impressions-widget"></div>
+              </li>
+              <li data-li="2" data-row="4" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="2" class="left">New Users</span><span class="right"><a href="#" data-anchor-click="2" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="new-users-widget"></div>
+              </li>
+              <li data-li="3" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="3" class="left">Online Users</span><span class="right"><a href="#" data-anchor-click="3" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="online-users-widget"></div>
+              </li>
+              <li data-li="4" data-row="5" data-col="5" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="4" class="left">Overview</span><span class="right"><a href="#" data-anchor-click="4" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="table-widget"></div>
+              </li>
+              <li data-li="5" data-row="2" data-col="5" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="5" class="left">Hotspot Maps</span><span class="right"><a href="#" data-anchor-click="5" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="hotspot-maps-widget"></div>
+              </li>
+              <li data-li="6" data-row="8" data-col="5" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="6" class="left">More Loyalty</span><span class="right"><a href="#" data-anchor-click="6" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="pie-chart-widget"></div>
+                <div class="right-half">
+                  <div class="top">
+                    <p class="big-number">102</p>
+                    <p class="medium-text">Current Visitors</p>
+                    <p class="small-text">15% Higher than last week</p>
+                  </div>
+                  <div class="middle">
+                    <p class="big-number">12</p>
+                    <p class="medium-text">First Time Visitors</p>
+                    <p class="small-text">8% Higher Than Last Week</p>
+                  </div>
+                  <div class="bottom">
+                    <p class="big-number">67</p>
+                    <p class="medium-text">Loyal Visitors</p>
+                    <p class="small-text">5% Higher than Last Week</p>
+                  </div>
+                </div>
+              </li>
+              <li data-li="7" data-row="8" data-col="5" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="7" class="left">Pie Data</span><span class="right"><a href="#" data-anchor-click="7" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart7"></div>
+              </li>
+              <li data-li="8" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="8" class="left">Table Data</span><span class="right"><a href="#" data-anchor-click="8" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart8"></div>
+              </li>
+              <li data-li="9" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="9" class="left">Maps Data</span><span class="right"><a href="#" data-anchor-click="9" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart9"></div>
+              </li>
+              <li data-li="10" data-row="8" data-col="8" data-sizex="4" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="10" class="left">Wifi Area</span><span class="right">
+                    <button class="tiny operational-button">Add New</button><a href="#" data-anchor-click="10" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="wifi-area-widget"></div>
+              </li>
+              <li data-li="11" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="11" class="left">Comparison Widget</span><span class="right"><a href="#" data-reveal-id="base-compare-modal" class="button tiny operational-button">Compare</a><a href="#" data-anchor-click="11" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="comparison-widget"></div>
+              </li>
+              <li data-li="12" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="12" class="left">Quick Action</span><span class="right"><a href="#" data-reveal-id="base-compare-modal" class="button tiny operational-button">Compare</a><a href="#" data-anchor-click="12" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="quick-action">
+                  <div class="left-half">
+                    <button>Add User<i class="fa fa-plus"></i></button>
+                    <button>Find User<i class="fa fa-search"></i></button>
+                    <button>Email Blast<i class="fa fa-paper-plane"></i></button>
+                  </div>
+                  <div class="right-half">
+                    <button>Upload Banner<i class="fa fa-upload"></i></button>
+                    <button>Create Coupon<i class="fa fa-qrcode"></i></button>
+                    <button>Create Ad<i class="fa fa-money"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li data-li="13" data-row="8" data-col="8" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="13" class="left">Customer Loyalty</span><span class="right"><a href="#" data-anchor-click="13" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="customer-loyalty-widget">  </div>
+              </li>
+              <li data-li="14" data-row="8" data-col="8" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="14" class="left">Demographics</span><span class="right"><a href="#" data-anchor-click="14" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="demographics-widget"></div>
+                <div id="demographics-right">
+                  <div class="row">
+                    <div class="small-12 columns"><span id="male" class="demographics-text">32%<i class="fa fa-male"></i></span></div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns"><span id="female" class="demographics-text">68%<i class="fa fa-female"></i></span></div>
+                  </div>
+                </div>
+              </li>
+              <li data-li="15" data-row="8" data-col="8" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="15" class="left">Customer Devices</span><span class="right"><a href="#" data-anchor-click="15" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="customer-devices-widget"></div>
+                <div id="customer-devices-widget-table"></div>
+              </li>
+              <li data-li="16" data-row="8" data-col="8" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="16" class="left">Customer Sources</span><span class="right"><a href="#" data-anchor-click="16" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="customer-sources-widget"></div>
+                <div id="customer-sources-widget-table"></div>
+              </li>
+              <li data-li="17" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="17" class="left">Daytime Loyalty Trend</span><span class="right"><a href="#" data-anchor-click="17" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="daytime-loyalty-widget"></div>
+              </li>
+              <li data-li="18" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="18" class="left">Live View</span><span class="right"><a href="#" data-anchor-click="18" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="live-view-widget"></div>
+                <div id="live-view-left">
+                  <div class="row">
+                    <div class="small-12 columns text-centered"><span><i class="fa fa-user"></i></span><span id="num">102</span>
+                      <p>Current Users</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li data-li="19" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="19" class="left">Average Session Time</span><span class="right"><a href="#" data-anchor-click="19" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="daily-average-session-time-widget"></div>
+              </li>
+              <li data-li="20" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="20" class="left">New Customer Sources</span><span class="right"><a href="#" data-anchor-click="20" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="new-customer-sources-widget"></div>
+              </li>
+              <li data-li="21" data-row="7" data-col="1" data-sizex="4" data-sizey="3" class="no-dots">
+                <div class="title"><span data-name="21" class="left">Event History</span><span class="right"><a href="#" data-anchor-click="21" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="event-history">
+                  <svg height="100%" width="60">
+                    <line x1="40" y1="0" x2="40" y2="270" style="stroke:rgba(0,0,0,.3);stroke-width:20"></line>
+                    <polygon points="20,270 60,270 40,290" style="fill:rgba(0,0,0,.3);stroke:rgba(0,0,0,.3);stroke-width:0"></polygon>
+                  </svg>
+                  <div class="event1">
+                    <div class="time-box left">
+                      <div class="date">08-05-14</div>
+                      <div class="time-of-day">3:40pm</div>
+                    </div>
+                    <div class="event-box right">
+                      <div class="icon-label left"><i class="fa fa-cloud-upload"></i></div>
+                      <div class="event-name right">New Hotspot Added</div>
+                    </div>
+                  </div>
+                  <div class="event2">
+                    <div class="time-box left">
+                      <div class="date">08-05-14</div>
+                      <div class="time-of-day">3:50pm</div>
+                    </div>
+                    <div class="event-box right">
+                      <div class="icon-label left"><i style="color:crimson" class="fa fa-ban"></i></div>
+                      <div class="event-name right">Failed Login Attempt</div>
+                    </div>
+                  </div>
+                  <div class="event3">
+                    <div class="time-box left">
+                      <div class="date">08-05-14</div>
+                      <div class="time-of-day">4:00pm</div>
+                    </div>
+                    <div class="event-box right">
+                      <div class="icon-label left"><i style="color:darkseagreen" class="fa fa-user"></i></div>
+                      <div class="event-name right">New User Added</div>
+                    </div>
+                  </div>
+                  <div class="event4">
+                    <div class="time-box left">
+                      <div class="date">08-05-14</div>
+                      <div class="time-of-day">4:10pm</div>
+                    </div>
+                    <div class="event-box right">
+                      <div class="icon-label left"><i style="color:gold" class="fa fa-fire"></i></div>
+                      <div class="event-name right">New Peak Reached</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li data-li="22" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="22" class="left">Apps Shortcut</span><span class="right"><a href="#" data-reveal-id="base-compare-modal" class="button tiny operational-button">Compare</a><a href="#" data-anchor-click="22" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="apps-shortcut"><a href="#" class="left"><img src="./dashboard/images/coupons.png"></a><a href="#" class="left"><img src="./dashboard/images/geo_couponing.png"></a><a href="#" class="left"><img src="./dashboard/images/marketing_tool.png"></a><a href="#" class="left"><img src="./dashboard/images/nearby.png"></a><a href="#" class="left"><img src="./dashboard/images/spot_news.png"></a><a href="#" class="left"><img src="./dashboard/images/weather.png"></a><a href="#" class="left"><img src="./dashboard/images/survey_pro.png"></a><a href="#" class="left"><img src="./dashboard/images/presence.png"></a></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer-->
+    <footer></footer>
+    <!-- build:js /dashboard/scripts/main.js-->
+    <script src="https://www.google.com/jsapi?autoload={&quot;modules&quot;:[{&quot;name&quot;:&quot;visualization&quot;,&quot;version&quot;:&quot;1&quot;,&quot;packages&quot;:[&quot;corechart&quot;,&quot;geochart&quot;,&quot;table&quot;]}]}"></script>
+    <script src="/dashboard/scripts/jquery-2.1.1.min.js"></script>
+    <script src="/dashboard/scripts/modernizr.js"></script>
+    <script src="/dashboard/scripts/foundation.min.js"></script>
+    <script src="/dashboard/scripts/jquery.gridster.js"></script>
+    <script src="/dashboard/scripts/radio.js"></script>
+    <script src="/dashboard/scripts/google.js"></script>
+    <script src="/dashboard/scripts/main.js"></script>
+    <!-- endbuild-->
+  </head>
+</html>

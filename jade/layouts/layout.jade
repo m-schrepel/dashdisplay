@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    title dashboard
+    meta(charset='UTF-8')
+    meta(content='', name='description')
+    meta(content='', name='author')
+    meta(content='3 days', name='revisit-after')
+
+    // build:css /dashboard/styles/main.css
+    link(href='/dashboard/styles/foundation.min.css', rel='stylesheet')
+    link(href='/dashboard/styles/normalize.css', rel='stylesheet')
+    link(href='/dashboard/styles/font-awesome.css', rel='stylesheet')
+    link(href='/dashboard/styles/radio.css', rel='stylesheet')
+    link(href='/dashboard/styles/jquery.gridster.css', rel='stylesheet')
+    link(href='/dashboard/styles/main.css', rel='stylesheet')
+    // endbuild
+
+    block content
+
+    // Footer
+    footer
+
+    // build:js /dashboard/scripts/main.js
+    script(src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart","geochart","table"]}]}')
+    script(src='/dashboard/scripts/jquery-2.1.1.min.js')
+    script(src='/dashboard/scripts/modernizr.js')
+    script(src='/dashboard/scripts/foundation.min.js')
+    script(src='/dashboard/scripts/jquery.gridster.js')
+    script(src='/dashboard/scripts/radio.js')
+    script(src='/dashboard/scripts/google.js')
+    script(src='/dashboard/scripts/main.js')
+    // endbuild

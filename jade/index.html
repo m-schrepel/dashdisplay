@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dashboard</title>
+    <meta charset="UTF-8">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <meta content="3 days" name="revisit-after">
+    <!-- build:css /dashboard/styles/main.css-->
+    <link href="/dashboard/styles/foundation.min.css" rel="stylesheet">
+    <link href="/dashboard/styles/normalize.css" rel="stylesheet">
+    <link href="/dashboard/styles/font-awesome.css" rel="stylesheet">
+    <link href="/dashboard/styles/radio.css" rel="stylesheet">
+    <link href="/dashboard/styles/jquery.gridster.css" rel="stylesheet">
+    <link href="/dashboard/styles/main.css" rel="stylesheet">
+    <!-- endbuild-->
+    <div id="loading"></div>
+    <div id="content">
+      <div id="edit-delete-modal" data-reveal class="reveal-modal medium">
+        <form id="form">
+          <div class="row">
+            <div class="small-8 columns small-centered">
+              <label>Edit Widget Name
+                <input id="name-change" name="Name Change" type="text" placeholder="New Widget Name">
+              </label><a class="button left tiny alert remove-widget">Remove Widget</a><a class="button right tiny submit-name-change">Save Changes</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-8 columns small-centered"><span style="display:block; margin:0 auto; text-align:center; font-weight:normal">Widget refresh rate in minutes</span>
+              <div id="set-interval">
+                <input id="1" name="options" type="radio" checked>
+                <label for="1">1</label>
+                <input id="2" name="options" type="radio">
+                <label for="2">2</label>
+                <input id="3" name="options" type="radio">
+                <label for="3">3</label>
+                <input id="4" name="options" type="radio">
+                <label for="4">4</label>
+                <input id="5" name="options" type="radio">
+                <label for="5">5</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <ul data-tab class="tabs">
+            <li id="no-radios" class="tab-title active"><a href="#overview" class="text-center">Overview
+                <div class="icon"><i class="fa fa-bar-chart-o"></i></div></a></li>
+            <li class="tab-title"><a href="#impression" class="text-center">Impressions
+                <div class="icon"><i class="fa fa-eye"></i></div></a></li>
+            <li class="tab-title"><a href="#user-activity" class="text-center">Online
+                <div class="icon"><i class="fa fa-users"></i></div></a></li>
+            <li class="tab-title"><a href="#login" class="text-center">Logins
+                <div class="icon"><i class="fa fa-sign-in"></i></div></a></li>
+            <li class="tab-title"><a href="#registered-users" class="text-center">Reg. Users
+                <div class="icon"><i class="fa fa-pencil"></i></div></a></li>
+            <li id="last-tab" class="tab-title"><a href="#traffic" class="text-center">Maps
+                <div class="icon"><i class="fa fa-globe"></i></div></a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="widget-buttons-row" class="row">
+        <div class="small-4 columns small-centered"><a data-dropdown="widget-type" id="add-widget" class="button dropdown tiny left">Add Widget</a>
+          <ul id="widget-type" data-dropdown-content class="f-dropdown">
+            <li id="impressions-li"><a href="#" id="add-impressions-widget">Impressions</a></li>
+            <li><a href="#" id="add-online-users-widget">Online Users</a></li>
+            <li><a href="#" id="add-traffic-widget">Traffic</a></li>
+            <li id="new-users-li"><a href="#" id="add-new-users-widget">New Users</a></li>
+          </ul><a id="reset-widgets" class="button tiny right">Reset Widgets</a>
+        </div>
+      </div>
+      <div class="tabs-content vertical">
+        <div id="radios">
+          <input id="daily" name="options" type="radio" checked>
+          <label for="daily">Today</label>
+          <input id="weekly" name="options" type="radio">
+          <label for="weekly">Weekly</label>
+          <input id="monthly" name="options" type="radio">
+          <label for="monthly">Monthly</label>
+          <input id="yearly" name="options" type="radio">
+          <label for="yearly">Yearly</label>
+        </div>
+        <div id="overview" class="content active">
+          <div class="gridster">
+            <ul>
+              <li data-li="1" data-row="1" data-col="1" data-sizex="6" data-sizey="4" class="no-dots">
+                <div class="title"><span data-name="1" class="left">Impressions</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="1" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="impressions-widget"></div>
+              </li>
+              <li data-li="2" data-row="1" data-col="7" data-sizex="4" data-sizey="4" class="no-dots">
+                <div class="title"><span data-name="2" class="left">New Users</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="2" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="new-users-widget"></div>
+              </li>
+              <li data-li="3" data-row="5" data-col="1" data-sizex="6" data-sizey="4" class="no-dots">
+                <div class="title"><span data-name="3" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="3" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart3"></div>
+              </li>
+              <li data-li="4" data-row="5" data-col="7" data-sizex="4" data-sizey="4" class="no-dots">
+                <div class="title"><span data-name="4" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="4" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart4"></div>
+              </li>
+              <li data-li="5" data-row="2" data-col="8" data-sizex="2" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="5" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="5" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart5"></div>
+              </li>
+              <li data-li="6" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="6" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="6" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart6"></div>
+              </li>
+              <li data-li="7" data-row="8" data-col="8" data-sizex="2" data-sizey="1" class="no-dots">
+                <div class="title"><span data-name="7" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="7" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart7"></div>
+              </li>
+              <li data-li="8" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="8" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="8" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart8"></div>
+              </li>
+              <li data-li="9" data-row="8" data-col="8" data-sizex="4" data-sizey="2" class="no-dots">
+                <div class="title"><span data-name="9" class="left">App name</span><span class="right"><a href="#" id="refresh"><i class="fa fa-refresh"></i></a><a href="#" data-anchor-click="9" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div id="chart9"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="impression" class="content">
+          <div id="impression-charts"></div>
+          <div id="impression-data">
+            <div class="row">
+              <div class="small-8 small-centered columns min-max-boxes">
+                <ul class="horizontal-list">
+                  <li class="data-container">
+                    <div class="data-label-top">Minimum</div><span id="max" class="data">3000 </span>
+                  </li>
+                  <li class="data-container">
+                    <div class="data-label-top">Average</div><span id="avg" class="data">3000 </span>
+                  </li>
+                  <li class="data-container">
+                    <div class="data-label-top">Maximum</div><span id="min" class="data">3000 </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="user-activity" class="content">
+          <div id="user-activity-charts"></div>
+          <div class="row">
+            <div class="small-8 columns small-centered min-max-boxes">
+              <ul class="horizontal-list">
+                <li class="data-container">
+                  <div class="data-label-top">Minimum</div><span id="max" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Average</div><span id="avg" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Maximum</div><span id="min" class="data">3000 </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="login" class="content">
+          <div id="login-charts"></div>
+          <div class="row">
+            <div class="small-8 small-centered columns min-max-boxes">
+              <ul class="horizontal-list">
+                <li class="data-container">
+                  <div class="data-label-top">Minimum</div><span id="max" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Average</div><span id="avg" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Maximum</div><span id="min" class="data">3000 </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="registered-users" class="content">
+          <div id="registered-users-charts"></div>
+          <div class="row">
+            <div class="small-8 small-centered columns min-max-boxes">
+              <ul class="horizontal-list">
+                <li class="data-container">
+                  <div class="data-label-top">Minimum</div><span id="max" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Average</div><span id="avg" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Maximum</div><span id="min" class="data">3000 </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="traffic" class="content">
+          <div id="traffic-charts"></div>
+          <div class="row">
+            <div class="small-8 small-centered columns min-max-boxes">
+              <ul class="horizontal-list">
+                <li class="data-container">
+                  <div class="data-label-top">Minimum</div><span id="max" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Average</div><span id="avg" class="data">3000 </span>
+                </li>
+                <li class="data-container">
+                  <div class="data-label-top">Maximum</div><span id="min" class="data">3000 </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer-->
+    <footer></footer>
+    <!-- build:js /dashboard/scripts/main.js-->
+    <script src="https://www.google.com/jsapi?autoload={&quot;modules&quot;:[{&quot;name&quot;:&quot;visualization&quot;,&quot;version&quot;:&quot;1&quot;,&quot;packages&quot;:[&quot;corechart&quot;,&quot;geochart&quot;]}]}"></script>
+    <script src="/dashboard/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/dashboard/scripts/modernizr.js"></script>
+    <script src="/dashboard/scripts/foundation.min.js"></script>
+    <script src="/dashboard/scripts/jquery.gridster.js"></script>
+    <script src="/dashboard/scripts/radio.js"></script>
+    <script src="/dashboard/scripts/google.js"></script>
+    <script src="/dashboard/scripts/main.js"></script>
+    <!-- endbuild-->
+  </head>
+</html>
