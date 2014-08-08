@@ -36,10 +36,6 @@ $(function(){
         row: wgd.row,
         size_x: wgd.size_x,
         size_y: wgd.size_y,
-        chartDiv: $($w).find('.title').next('div').attr('id'),
-        HTML: $($w).find('.title').clone().wrap('<div>').parent().html(),
-        data: $($w).data('li'),
-        refresh: $($w).data('refresh')
       }
     }
   }).data('gridster');
@@ -54,10 +50,11 @@ $(function(){
   }
   var loadGrid = function(){
     gridster.remove_all_widgets();
-    var a = localStorage.getObject('cloudWidgetArray')
-    for (var i = 0; i < a.length; i++) {
+    var a = JSON.parse(localStorage.cloudWidgetArray);
+    console.log(a);
+    for (var i = 0; i < a[0].length; i++) {
       // gridster.add_widget(a[i].allHtml, a[i].size_x, a[i].size_y, a[i].col, a[i].row)
-      gridster.add_widget("<li class='no-dots' data-refresh="+a[i].refresh+" data-li="+a[i].data+">"+a[i].HTML+"<div id='"+a[i].chartDiv+"'></div></li>", a[i].size_x, a[i].size_y, a[i].col, a[i].row) ;
+      gridster.add_widget(a[0][i], a[1][i], a[2][i], a[3][i], a[4][i]);
     };
   };
   if(localStorage.cloudWidgetArray){
@@ -110,8 +107,27 @@ $(function(){
     $('#name-change').attr('placeholder', ph)
   });
   var serialize = function(){
-    var something = gridster.serialize();
-    localStorage.setObject('cloudWidgetArray', something);
+    // gridster.serialize();
+    // console.log(gridster.serialize());
+    var html = [];
+    var sizex = [];
+    var sizey = [];
+    var col = [];
+    var row = [];
+    var master = [];
+    $('.gridster li').not('.preview-holder').clone().each(function(){
+        console.log($(this));
+        $(this).find('span.gs-resize-handle').remove();
+        $(this).find('div[id]').empty();
+        html.push($(this).wrapAll('<div></div>').parent().html());
+        sizex.push($(this).data('sizex'));
+        sizey.push($(this).data('sizey'));
+        col.push($(this).data('col'));
+        row.push($(this).data('row'));
+      });
+    master.push(html,sizex,sizey,col,row);
+    console.log(master);
+    localStorage['cloudWidgetArray'] = JSON.stringify(master);
   };
   var ddCheck = function(){
     var arr = [];

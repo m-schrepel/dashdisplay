@@ -288,27 +288,27 @@ ul.tabs.vertical{
 	float: right;
 	width: 70%;
 }
-#live-view-left{
+.live-view-left{
 	height: inherit;
 	background-color: #3399ff;
 	float: left;
 	width: 30%;
 }
-#live-view-left i{
+.live-view-left i{
 	color: #fff;
 }
 .text-centered{
 	text-align: center;
 }
-#live-view-left span{
+.live-view-left span{
 	color: #fff;
 	text-align: center;
 	font-size: 3em;
 }
-#live-view-left p{
+.live-view-left p{
 	color: #fff;
 }
-#event-history{
+.event-history{
 	position: relative;
 }
 .event1{
@@ -375,7 +375,7 @@ ul.tabs.vertical{
 .date{
 	margin-top: 5%;
 }
-#apps-shortcut a{
+.apps-shortcut a{
 	background-color: #6495ed;
 	margin: 10px;
 }
@@ -409,7 +409,7 @@ ul.tabs.vertical{
 .text-box span:last-child{
 	font-size: .75em;
 }
-#event-history{
+.event-history{
 	overflow: scroll;
 	background: url('/dashboard/images/line.png');
 	background-size: 40% 120%;
