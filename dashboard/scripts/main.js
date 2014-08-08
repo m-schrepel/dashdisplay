@@ -25,6 +25,7 @@ $(function(){
       }
     },
     draggable: {
+      handle:'.title',
       stop: function(event, ui){
         serialize();
       }
@@ -35,8 +36,8 @@ $(function(){
         row: wgd.row,
         size_x: wgd.size_x,
         size_y: wgd.size_y,
-        HTML: $($w).find('.title').clone().wrap('<p>').parent().html(),
         chartDiv: $($w).find('.title').next('div').attr('id'),
+        HTML: $($w).find('.title').clone().wrap('<div>').parent().html(),
         data: $($w).data('li'),
         refresh: $($w).data('refresh')
       }
@@ -55,7 +56,8 @@ $(function(){
     gridster.remove_all_widgets();
     var a = localStorage.getObject('cloudWidgetArray')
     for (var i = 0; i < a.length; i++) {
-      gridster.add_widget("<li class='no-dots' data-refresh="+a[i].refresh+" data-li="+a[i].data+">"+a[i].HTML+"<div style='height:160px' id='"+a[i].chartDiv+"'></div></li>", a[i].size_x, a[i].size_y, a[i].col, a[i].row) ;
+      // gridster.add_widget(a[i].allHtml, a[i].size_x, a[i].size_y, a[i].col, a[i].row)
+      gridster.add_widget("<li class='no-dots' data-refresh="+a[i].refresh+" data-li="+a[i].data+">"+a[i].HTML+"<div id='"+a[i].chartDiv+"'></div></li>", a[i].size_x, a[i].size_y, a[i].col, a[i].row) ;
     };
   };
   if(localStorage.cloudWidgetArray){
@@ -103,7 +105,7 @@ $(function(){
   $('body').on('click', '.anchor-click', function(e){
     var x = e.currentTarget;
     window.globalClick = $(x).data('anchor-click');
-    $('#edit-delete-modal').foundation('reveal', 'open');
+    $('#settings-modal').foundation('reveal', 'open');
     var ph = $(x).closest('span').prev().text();
     $('#name-change').attr('placeholder', ph)
   });
@@ -159,7 +161,7 @@ $(function(){
     if(b==="add-wifi-area-widget"){
       var c = "wifi-area-widget";
       var a = 10;
-      gridster.add_widget("<li class='no-dots' data-li="+a+"><div class='title'><span class='left' data-name='10'>Wifi Area</span><span class='right'><button class='tiny operational-button'>Add New</button><a href='#' data-anchor-click='10' data-reveal-id='edit-delete-modal' class='anchor-click'><i class='fa fa-cog'></i></a></span></div><div id="+c+"></div>",3,2);
+      gridster.add_widget("<li class='no-dots' data-li="+a+"><div class='title'><span class='left' data-name='10'>Wifi Area</span><span class='right'><button class='tiny operational-button'>Add New</button><a href='#' data-anchor-click='10' data-reveal-id='settings-modal' class='anchor-click'><i class='fa fa-cog'></i></a></span></div><div id="+c+"></div>",3,2);
       serialize();
       refreshAll();
       setTimeout(function(){
@@ -170,7 +172,7 @@ $(function(){
     if(b==="add-comparison-widget"){
       var c = "comparison-widget";
       var a = 11;
-      gridster.add_widget("<li class='no-dots' data-li="+a+"><div class='title'><span data-name="+a+" class='left'>Comparison Widget</span><span class='right'><a href='#' data-reveal-id='base-compare-modal' class='button tiny operational-button'>Compare</a><a href='#' data-anchor-click="+a+" data-reveal-id='edit-delete-modal' class='anchor-click'><i class='fa fa-cog'></i></a></span></div><div id="+c+"></div>",3,2);
+      gridster.add_widget("<li class='no-dots' data-li="+a+"><div class='title'><span data-name="+a+" class='left'>Comparison Widget</span><span class='right'><a href='#' data-reveal-id='base-compare-modal' class='button tiny operational-button'>Compare</a><a href='#' data-anchor-click="+a+" data-reveal-id='settings-modal' class='anchor-click'><i class='fa fa-cog'></i></a></span></div><div id="+c+"></div>",3,2);
       serialize();
       refreshAll();
       setTimeout(function(){
@@ -178,7 +180,7 @@ $(function(){
       }, 1000);
       return;
     }
-    gridster.add_widget('<li class="no-dots" data-li="'+a+'"><div class="title"><span class="left" data-name="'+a+'">App Name</span><span class="right"><a href="#" data-anchor-click="'+a+'" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div><div id="'+c+'"></div>',3,2);
+    gridster.add_widget('<li class="no-dots" data-li="'+a+'"><div class="title"><span class="left" data-name="'+a+'">App Name</span><span class="right"><a href="#" data-anchor-click="'+a+'" data-reveal-id="settings-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div><div id="'+c+'"></div>',3,2);
     serialize();
     refreshAll();
     setTimeout(function(){
@@ -186,6 +188,9 @@ $(function(){
     }, 1000);
 
 
+  });
+  $('#cancel').click(function(){
+    $('#settings-modal').foundation('reveal','close');
   });
   // Click Handler for changing the name of a widget
   $('.submit-name-change').click(function(){
@@ -196,10 +201,10 @@ $(function(){
     var radioSelected = $('#sort-by-input ins.slider-level:hidden').data('radio');
     console.log(radioSelected)
     chartDraw(globalClick, radioSelected);
-    $('[data-li='+globalClick+']').data({refresh: radioSelected});
+    $('[data-li='+globalClick+']').attr('data-refresh', radioSelected);
     $('#sort-by-modal').foundation('reveal', 'close');
     $('#name-change').val("");
-    $('#edit-delete-modal').foundation('reveal', 'close');
+    $('#settings-modal').foundation('reveal', 'close');
     serialize();
   });
   // Alternate handler to deal with enter in input field instead of button click
@@ -209,7 +214,7 @@ $(function(){
   });
   // Widget removal click handler
   $('.remove-widget').click(function(){
-    $('#edit-delete-modal').foundation('reveal', 'close');
+    $('#settings-modal').foundation('reveal', 'close');
     gridster.remove_widget($('[data-li='+globalClick+']'), function(){
       $('[data-li='+globalClick+']').remove();
       $('[data-dd='+globalClick+']').show();
@@ -329,10 +334,10 @@ $(function(){
       var sortBy = $('[data-li=8]').data('refresh')
       drawTable2(sortBy || "daily");
     } 
-    if($('#chart9').length>0){
-      var sortBy = $('[data-li=9]').data('refresh')
-      drawHotspotMapsWidget2(sortBy || "daily");    
-    }
+    // if($('#chart9').length>0){
+    //   var sortBy = $('[data-li=9]').data('refresh')
+    //   drawHotspotMapsWidget2(sortBy || "daily");    
+    // }
     if($('#wifi-area-widget').length>0){
       var sortBy = $('[data-li=10]').data('refresh')
       drawWifiArea(sortBy || "daily");    

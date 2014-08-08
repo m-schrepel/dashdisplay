@@ -16,6 +16,42 @@
     <!-- endbuild-->
     <div id="loading"></div>
     <div id="content">
+      <div id="settings-modal" data-reveal class="reveal-modal large">
+        <div class="row">
+          <div class="small-12 columns modal-top">
+            <p>Widget Options</p>
+          </div>
+        </div>
+        <ul data-tab class="tabs vertical">
+          <li class="tab-title active"><a href="#data-set-tab">Data set<i class="fa fa-filter"></i></a></li>
+          <li class="tab-title"><a href="#date-tab">Date & Time<i class="fa fa-clock-o"></i></a></li>
+          <li class="tab-title"><a href="#view-tab">View<i class="fa fa-eye"></i></a></li>
+        </ul>
+        <div class="tabs-content vertical">
+          <div id="data-set-tab" class="content active">
+            <p>Tab 1</p>
+          </div>
+          <div id="date-tab" class="content">
+            <p>Sort By:</p>
+            <div class="row">
+              <input id="daily" name="options" type="radio" checked>
+              <label for="daily">Daily</label>
+              <input id="weekly" name="options" type="radio">
+              <label for="weekly">Weekly</label>
+              <input id="monthly" name="options" type="radio">
+              <label for="monthly">Monthly</label>
+              <input id="yearly" name="options" type="radio">
+              <label for="yearly">Yearly</label>
+            </div>
+          </div>
+          <div id="view-tab" class="content">
+            <p>Tab 3</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns relative"><a class="button small right">Save Changes</a><a id="cancel" class="button small right">Cancel</a><a id="delete" class="button small left alert">Delete Widget</a></div>
+        </div>
+      </div>
       <div id="edit-delete-modal" data-reveal class="reveal-modal medium">
         <form id="form">
           <div class="row">
@@ -120,7 +156,6 @@
               </li>
               <li data-li="4" data-row="5" data-col="5" data-sizex="4" data-sizey="3" class="no-dots">
                 <div class="title"><span data-name="4" class="left">Overview</span><span class="right"><a href="#" data-anchor-click="4" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
-                <div id="table-widget"></div>
               </li>
               <li data-li="5" data-row="2" data-col="5" data-sizex="3" data-sizey="2" class="no-dots">
                 <div class="title"><span data-name="5" class="left">Hotspot Maps</span><span class="right"><a href="#" data-anchor-click="5" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
@@ -169,7 +204,7 @@
                 <div id="comparison-widget"></div>
               </li>
               <li data-li="12" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
-                <div class="title"><span data-name="12" class="left">Quick Action</span><span class="right"><a href="#" data-reveal-id="base-compare-modal" class="button tiny operational-button">Compare</a><a href="#" data-anchor-click="12" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div class="title"><span data-name="12" class="left">Quick Action</span><span class="right"><a href="#" data-anchor-click="12" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
                 <div id="quick-action">
                   <div class="left-half">
                     <button>Add User<i class="fa fa-plus"></i></button>
@@ -282,7 +317,7 @@
                 </div>
               </li>
               <li data-li="22" data-row="8" data-col="8" data-sizex="3" data-sizey="2" class="no-dots">
-                <div class="title"><span data-name="22" class="left">Apps Shortcut</span><span class="right"><a href="#" data-reveal-id="base-compare-modal" class="button tiny operational-button">Compare</a><a href="#" data-anchor-click="22" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
+                <div class="title"><span data-name="22" class="left">Apps Shortcut</span><span class="right"><a href="#" data-anchor-click="22" data-reveal-id="edit-delete-modal" class="anchor-click"><i class="fa fa-cog"></i></a></span></div>
                 <div id="apps-shortcut"><a href="#" class="left"><img src="./dashboard/images/coupons.png"></a><a href="#" class="left"><img src="./dashboard/images/geo_couponing.png"></a><a href="#" class="left"><img src="./dashboard/images/marketing_tool.png"></a><a href="#" class="left"><img src="./dashboard/images/nearby.png"></a><a href="#" class="left"><img src="./dashboard/images/spot_news.png"></a><a href="#" class="left"><img src="./dashboard/images/weather.png"></a><a href="#" class="left"><img src="./dashboard/images/survey_pro.png"></a><a href="#" class="left"><img src="./dashboard/images/presence.png"></a></div>
               </li>
             </ul>

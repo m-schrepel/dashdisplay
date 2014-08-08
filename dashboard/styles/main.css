@@ -28,6 +28,48 @@ nav.top-bar .name h1 a{
 	visibility: hidden;
 	opacity:0;
 }
+.relative{
+	border-top: 1px solid #aaa;
+}
+.relative a{
+	margin-top: 1%;
+	margin-bottom: 1%;
+	background-color: #6495ed;
+}
+.modal-top{
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #aaa
+}
+.modal-top p{
+	display: inline;
+	color: #bbb;
+	font-size: 1.5em;
+	vertical-align: middle;
+}
+#cancel{
+	margin-right: 5%;
+	background-color: #bbb;
+}
+#settings-modal .tabs-content.vertical{
+	position: relative;
+}
+#date-tab .row{
+	text-align: center;
+}
+#date-tab p{
+	text-align: center;
+}
+#settings-modal{
+	padding: 0px;
+	border: 1px solid #aaa;
+}
+#settings-modal-submit{
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	background-color: #6495ed;
+}
 .gridster li{
 	background-color: #fff;
 }
@@ -37,85 +79,49 @@ nav.top-bar .name h1 a{
 	border-bottom: 1px solid #ddd;
 	background-color: #fff;
 }
+#view-tab {
+	border-bottom: 0;
+}
 .no-dots{
 	list-style-type: none;
 	border: 1px solid #d3d3d3;
 }
-ul.tabs{
-	width: 600px;
+ul.tabs li a i{
+	float: left;
+	margin-right: 5%;
+	color: #333;
+}
+.tabs dd.active a, .tabs .tab-title.active a, .tab-title.active a i {
+	background: #6495ed;
+	color: #FFF !important;
+}
+ul.tabs.vertical{
+	width: 30%;
+	border-right: 1px solid #aaa;
+}
+.tabs.vertical li{
+	border-bottom: 1px solid #aaa;
+}
+.tabs.vertical li:last-child{
+	border-bottom:0;
+}
+#settings-modal .tabs-content.vertical{
 	margin: 0 auto;
+	width: 70%;
+	background-color: #ddd;
 }
-ul.tabs a{
-	width:100px;
-	height: 80px;
-	border: 1px solid #fad16f;
-}
-.tabs dd.active a, .tabs .tab-title.active a {
-	background: #fad16f;
-	color: #222;
-}
-#no-radios a{
+/*#no-radios a{
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
-}
-#last-tab a{
+}*/
+/*#last-tab a{
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
-}
+}*/
 .fa {
 	font-size: 1.5em;
 }
-/*#add-widget{
-	border-radius: 10px;
-	background-color: #fff;
-	border: 1px solid #333;
-	color: #333;
-	text-align: center;
-}
-#reset-widgets{
-	border-radius: 10px;
-	background-color: #fff;
-	border: 1px solid #333;
-	color: #333;
-}*/
-@media only screen and (min-width: 40.063em) {
-.tabs-content.vertical {
-	 width: 100%; 
-	 float: none; 
-	 margin-left: 0px; 
-	}
-}
-.text{
-	margin-left: 5px;
-	line-height: 70px;
-}
-.tabs .tab-title>a{
-	padding: 0;
-	line-height: 35px;
-}
-.horizontal-list{
-	text-align: center;
-	height: 4em;
-	margin-left:0 !important;
-}
-.data-container{
-	width: 25%;
-	height: 4em;
-	margin-top: .63em;
-	margin-left:1em;
-	margin-right:1em;
-	display: inline-block;
-	border-radius: 6px;
-	background-color: #fad16f;
-	color: #333;
-	text-align: center;
-	border: 1px solid #aaa;
-}
-.min-max-boxes{
-	background-color: #efefef;
-	border-radius: 8px;
-	border: 1px solid #fad16f;
-}
+
 .operational-button{
 	position: absolute;
 	margin-bottom: 0;
@@ -128,18 +134,6 @@ ul.tabs a{
 .operational-button:hover{
 	background-color: #6495ed;
 	color: #fff !important;
-}
-span.data{
-	font-size: 1.5em;
-}
-span#min{
-	color: #3ca13c;
-}
-span#avg{
-	color: #fff;
-}
-span#max{
-	color: #db2c2c;
 }
 .percent {
   position: absolute;
@@ -345,6 +339,13 @@ span#max{
 	left: 10px;
 	width: 90%;
 }
+.event5{
+	position: absolute;
+	height: 60px;
+	top: 290px;
+	left: 10px;
+	width: 90%;
+}
 .time-box{
 	text-align: center;
 	height: 100%;
@@ -377,4 +378,42 @@ span#max{
 #apps-shortcut a{
 	background-color: #6495ed;
 	margin: 10px;
+}
+.overview-box{
+	width: 100%;
+	margin-top: 10px;
+	height: 60px;
+}
+.icon-box{
+	height: 60px;
+	width: 60px;
+	background-color: #666;
+}
+.icon-box img{
+	margin-top: 5px;
+	display: inline-block;
+}
+.text-box{
+	height: 60px;
+	width: 65%;
+	background-color: #d3d3d3;
+}
+.text-box span{
+	vertical-align: top;
+	padding-right: 5px;
+}
+.text-box span:first-child{
+	font-weight: normal;
+	font-size: 1.5em;
+}
+.text-box span:last-child{
+	font-size: .75em;
+}
+#event-history{
+	overflow: scroll;
+	background: url('/dashboard/images/line.png');
+	background-size: 40% 120%;
+	background-repeat: repeat-y;
+	background-position: 30px -20px;
+
 }

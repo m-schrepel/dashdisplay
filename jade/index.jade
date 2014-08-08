@@ -3,26 +3,64 @@ extends layout
 block content
   #loading
   #content
-    #edit-delete-modal.reveal-modal.medium(data-reveal)
-      form#form
-        .row
+    #settings-modal.reveal-modal.large(data-reveal)
+      .row
+        .small-12.columns.modal-top
+          p Widget Options
+      ul.tabs.vertical(data-tab)
+        li.tab-title.active
+          a(href="#change-name") Change Name
+            i.fa.fa-pencil
+        li.tab-title
+          a(href="#data-set-tab") Data set
+            i.fa.fa-filter
+        li.tab-title
+          a(href="#date-tab") Date & Time
+            i.fa.fa-clock-o
+      .tabs-content.vertical
+        .content#change-name.active
           .small-8.columns.small-centered
-            label Edit Widget Name
-              input#name-change(name="Name Change" type="text" placeholder="New Widget Name")
-            a.button.left.tiny.alert.remove-widget Remove Widget
-            a.button.right.tiny.submit-name-change Save Changes
-        .row
-          .small-8.columns.small-centered
-            span(style="display:block; margin:0 auto; text-align:center; font-weight:normal") Select Time Interval
-            #sort-by-input
-              input#daily(name="options", type="radio" checked)
-              label(for="daily") Daily
-              input#weekly(name="options", type="radio")
-              label(for="weekly") Weekly
-              input#monthly(name="options", type="radio")
-              label(for="monthly") Monthly
-              input#yearly(name="options", type="radio")
-              label(for="yearly") Yearly
+            form#form
+              label Edit Widget Name
+                input#name-change(name="Name Change" type="text" placeholder="New Widget Name")
+        .content#data-set-tab
+          p Tab 1
+        .content#date-tab
+          p Sort By:
+          .row 
+            input#daily(name="options", type="radio" checked)
+            label(for="daily") Daily
+            input#weekly(name="options", type="radio")
+            label(for="weekly") Weekly
+            input#monthly(name="options", type="radio")
+            label(for="monthly") Monthly
+            input#yearly(name="options", type="radio")
+            label(for="yearly") Yearly
+      .row
+        .small-12.columns.relative
+          a.button.small.right.submit-name-change Save Changes
+          a.button.small.right#cancel Cancel
+          a.button.small.left.alert.remove-widget#delete Delete Widget
+    //- #edit-delete-modal.reveal-modal.medium(data-reveal)
+    //-   form#form
+    //-     .row
+    //-       .small-8.columns.small-centered
+    //-         label Edit Widget Name
+    //-           input#name-change(name="Name Change" type="text" placeholder="New Widget Name")
+    //-         a.button.left.tiny.alert.remove-widget Remove Widget
+    //-         a.button.right.tiny.submit-name-change Save Changes
+    //-     .row
+    //-       .small-8.columns.small-centered
+    //-         span(style="display:block; margin:0 auto; text-align:center; font-weight:normal") Select Time Interval
+    //-         #sort-by-input
+    //-           input#daily(name="options", type="radio" checked)
+    //-           label(for="daily") Daily
+    //-           input#weekly(name="options", type="radio")
+    //-           label(for="weekly") Weekly
+    //-           input#monthly(name="options", type="radio")
+    //-           label(for="monthly") Monthly
+    //-           input#yearly(name="options", type="radio")
+    //-           label(for="yearly") Yearly
     //- #sort-by-modal.reveal-modal.medium(data-reveal)
     //-   .row
     //-     .small-8.columns.small-centered
@@ -132,7 +170,6 @@ block content
             ul.dropdown
               li
                 a(href="#") Alert Items  
-    .tabs-content.vertical
       //- #radios 
       //-   input#daily(name="options", type="radio" checked)
       //-   label(for="daily") Today
@@ -142,307 +179,360 @@ block content
       //-   label(for="monthly") Monthly
       //-   input#yearly(name="options", type="radio")
       //-   label(for="yearly") Yearly
-      .content.active#overview
-        .gridster
-          ul
-            li.no-dots(data-li="1" data-row="1", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="1") Impressions
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh
-                  a(href="#" data-anchor-click="1" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #impressions-widget
-            li.no-dots(data-li="2" data-row="4", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="2") New Users
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="2" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #new-users-widget
-            li.no-dots(data-li="3" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="3") Online Users
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="3" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #online-users-widget
-            li.no-dots(data-li="4" data-row="5", data-col="5", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="4") Overview
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="4" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #table-widget
-            li.no-dots(data-li="5" data-row="2", data-col="5", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="5") Hotspot Maps
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="5" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #hotspot-maps-widget
-            li.no-dots(data-li="6" data-row="8", data-col="5", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="6") More Loyalty
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="6" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #pie-chart-widget
-              .right-half
-                .top
-                  p.big-number 102
-                  p.medium-text Current Visitors
-                  p.small-text 15% Higher than last week
-                .middle
-                  p.big-number 12
-                  p.medium-text First Time Visitors
-                  p.small-text 8% Higher Than Last Week
-                .bottom
-                  p.big-number 67
-                  p.medium-text Loyal Visitors
-                  p.small-text 5% Higher than Last Week
-            li.no-dots(data-li="7" data-row="8", data-col="5", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="7") Pie Data
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="7" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #chart7
-            li.no-dots(data-li="8" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="8") Table Data
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="8" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #chart8
-            li.no-dots(data-li="9" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="9") Maps Data
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="9" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #chart9
-            li.no-dots(data-li="10" data-row="8", data-col="8", data-sizex="4", data-sizey="2")
-              .title
-                span.left(data-name="10") Wifi Area
-                span.right
-                  button.tiny.operational-button Add New
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="10" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #wifi-area-widget
-            li.no-dots(data-li="11" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="11") Comparison Widget
-                span.right
-                  a(href="#" data-reveal-id="base-compare-modal").button.tiny.operational-button Compare
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="11" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #comparison-widget
-            li.no-dots(data-li="12" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="12") Quick Action
-                span.right
-                  a(href="#" data-reveal-id="base-compare-modal").button.tiny.operational-button Compare
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="12" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #quick-action
-                .left-half
-                  button Add User
-                    i.fa.fa-plus
-                  button Find User
-                    i.fa.fa-search
-                  button Email Blast
-                    i.fa.fa-paper-plane
-                .right-half
-                  button Upload Banner
-                    i.fa.fa-upload
-                  button Create Coupon
-                    i.fa.fa-qrcode
-                  button Create Ad
-                    i.fa.fa-money
-            li.no-dots(data-li="13" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="13") Customer Loyalty
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="13" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #customer-loyalty-widget   
-            li.no-dots(data-li="14" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="14") Demographics
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="14" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #demographics-widget
-              #demographics-right
-                .row
-                  .small-12.columns
-                    span#male.demographics-text 32%
-                      i.fa.fa-male
-                .row
-                  .small-12.columns
-                    span#female.demographics-text 68%
-                      i.fa.fa-female
-            li.no-dots(data-li="15" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="15") Customer Devices
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="15" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #customer-devices-widget
-              #customer-devices-widget-table
-            li.no-dots(data-li="16" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="16") Customer Sources
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="16" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #customer-sources-widget
-              #customer-sources-widget-table
-            li.no-dots(data-li="17" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="17") Daytime Loyalty Trend
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="17" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #daytime-loyalty-widget
-            li.no-dots(data-li="18" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="18") Live View
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="18" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #live-view-widget
-              #live-view-left
-                .row
-                  .small-12.columns.text-centered
-                    span
-                      i.fa.fa-user
-                    span#num 102
-                    p Current Users
-            li.no-dots(data-li="19" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="19") Average Session Time
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="19" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #daily-average-session-time-widget
-            li.no-dots(data-li="20" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="20") New Customer Sources
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="20" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #new-customer-sources-widget
-            li.no-dots(data-li="21" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
-              .title
-                span.left(data-name="21") Event History
-                span.right
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="21" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #event-history
-                svg(height="100%" width="60")
-                  line(x1="40" y1="0" x2="40" y2="270" style="stroke:rgba(0,0,0,.3);stroke-width:20")
-                  polygon(points="20,270 60,270 40,290" style="fill:rgba(0,0,0,.3);stroke:rgba(0,0,0,.3);stroke-width:0")
-                .event1
-                  .time-box.left 
-                    .date 08-05-14
-                    .time-of-day 3:40pm
-                  .event-box.right
-                    .icon-label.left
-                      i.fa.fa-cloud-upload
-                    .event-name.right New Hotspot Added
-                .event2
-                  .time-box.left 
-                    .date 08-05-14
-                    .time-of-day 3:50pm
-                  .event-box.right
-                    .icon-label.left
-                      i.fa.fa-ban(style="color:crimson")
-                    .event-name.right Failed Login Attempt
-                .event3
-                  .time-box.left 
-                    .date 08-05-14
-                    .time-of-day 4:00pm
-                  .event-box.right
-                    .icon-label.left
-                      i.fa.fa-user(style="color:darkseagreen")
-                    .event-name.right New User Added
-                .event4
-                  .time-box.left 
-                    .date 08-05-14
-                    .time-of-day 4:10pm
-                  .event-box.right
-                    .icon-label.left
-                      i.fa.fa-fire(style="color:gold")
-                    .event-name.right New Peak Reached
-            li.no-dots(data-li="22" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
-              .title
-                span.left(data-name="22") Apps Shortcut
-                span.right
-                  a(href="#" data-reveal-id="base-compare-modal").button.tiny.operational-button Compare
-                  //- a(href='#')#refresh
-                  //-   i.fa.fa-refresh 
-                  a(href="#" data-anchor-click="22" data-reveal-id="edit-delete-modal").anchor-click
-                    i.fa.fa-cog
-              #apps-shortcut
-                  a(href="#").left
-                    img(src="./dashboard/images/coupons.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/geo_couponing.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/marketing_tool.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/nearby.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/spot_news.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/weather.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/survey_pro.png")
-                  a(href="#").left
-                    img(src="./dashboard/images/presence.png")
+    .gridster
+      ul
+        li.no-dots(data-li="1" data-row="1", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="1") Impressions
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh
+              a(href="#" data-anchor-click="1" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #impressions-widget
+        li.no-dots(data-li="2" data-row="4", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="2") New Users
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="2" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #new-users-widget
+        li.no-dots(data-li="3" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="3") Online Users
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="3" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #online-users-widget
+        li.no-dots(data-li="4" data-static="true" data-row="5", data-col="5", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="4") Overview
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="4" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          //- #table-widget
+          .row.text-centered
+            .small-6.columns.left
+             .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/login.png")
+                .text-box.left
+                  span 123,000<br>
+                  span Registered Users
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/traffic.png")
+                .text-box.left
+                  span 392.5GB<br>
+                  span Data Transfered
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/new_user.png")
+                .text-box.left
+                  span 232<br>
+                  span New Users
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/hotspots_icon.png")
+                .text-box.left
+                  span 260<br>
+                  span Hotspots
+            .small-6.colums.right
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/wifiarea_icon.png")
+                .text-box.left
+                  span 14<br>
+                  span WiFi Areas
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/views.png")
+                .text-box.left
+                  span 723,000<br>
+                  span Impressions
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/login.png")
+                .text-box.left
+                  span 123,000<br>
+                  span Registered Users
+              .overview-box
+                .icon-box.left
+                  img(src="./dashboard/images/login.png")
+                .text-box.left
+                  span 123,000<br>
+                  span Registered Users
+        li.no-dots(data-li="5" data-row="2", data-col="5", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="5") Hotspot Maps
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="5" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #hotspot-maps-widget
+        li.no-dots(data-li="6" data-row="8", data-col="5", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="6") More Loyalty
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="6" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #pie-chart-widget
+          .right-half
+            .top
+              p.big-number 102
+              p.medium-text Current Visitors
+              p.small-text 15% Higher than last week
+            .middle
+              p.big-number 12
+              p.medium-text First Time Visitors
+              p.small-text 8% Higher Than Last Week
+            .bottom
+              p.big-number 67
+              p.medium-text Loyal Visitors
+              p.small-text 5% Higher than Last Week
+        li.no-dots(data-li="7" data-row="8", data-col="5", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="7") Pie Data
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="7" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #chart7
+        li.no-dots(data-li="8" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="8") Table Data
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="8" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #chart8
+        li.no-dots(data-li="9" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="9") Maps Data
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="9" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #chart9
+        li.no-dots(data-li="10" data-row="8", data-col="8", data-sizex="4", data-sizey="2")
+          .title
+            span.left(data-name="10") Wifi Area
+            span.right
+              button.tiny.operational-button Add New
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="10" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #wifi-area-widget
+        li.no-dots(data-li="11" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="11") Comparison Widget
+            span.right
+              a(href="#" data-reveal-id="base-compare-modal").button.tiny.operational-button Compare
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="11" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #comparison-widget
+        li.no-dots(data-li="12" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="12") Quick Action
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="12" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #quick-action
+            .left-half
+              button Add User
+                i.fa.fa-plus
+              button Find User
+                i.fa.fa-search
+              button Email Blast
+                i.fa.fa-paper-plane
+            .right-half
+              button Upload Banner
+                i.fa.fa-upload
+              button Create Coupon
+                i.fa.fa-qrcode
+              button Create Ad
+                i.fa.fa-money
+        li.no-dots(data-li="13" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="13") Customer Loyalty
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="13" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #customer-loyalty-widget   
+        li.no-dots(data-li="14" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="14") Demographics
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="14" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #demographics-widget
+          #demographics-right
+            .row
+              .small-12.columns
+                span#male.demographics-text 32%
+                  i.fa.fa-male
+            .row
+              .small-12.columns
+                span#female.demographics-text 68%
+                  i.fa.fa-female
+        li.no-dots(data-li="15" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="15") Customer Devices
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="15" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #customer-devices-widget
+          #customer-devices-widget-table
+        li.no-dots(data-li="16" data-row="8", data-col="8", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="16") Customer Sources
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="16" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #customer-sources-widget
+          #customer-sources-widget-table
+        li.no-dots(data-li="17" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="17") Daytime Loyalty Trend
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="17" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #daytime-loyalty-widget
+        li.no-dots(data-li="18" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="18") Live View
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="18" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #live-view-widget
+          #live-view-left
+            .row
+              .small-12.columns.text-centered
+                span
+                  i.fa.fa-user
+                span#num 102
+                p Current Users
+        li.no-dots(data-li="19" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="19") Average Session Time
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="19" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #daily-average-session-time-widget
+        li.no-dots(data-li="20" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="20") New Customer Sources
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="20" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #new-customer-sources-widget
+        li.no-dots(data-li="21" data-row="7", data-col="1", data-sizex="4", data-sizey="3")
+          .title
+            span.left(data-name="21") Event History
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="21" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #event-history
+            .event1
+              .time-box.left 
+                .date 08-05-14
+                .time-of-day 3:40pm
+              .event-box.right
+                .icon-label.left
+                  i.fa.fa-cloud-upload
+                .event-name.right New Hotspot Added
+            .event2
+              .time-box.left 
+                .date 08-05-14
+                .time-of-day 3:50pm
+              .event-box.right
+                .icon-label.left
+                  i.fa.fa-ban(style="color:crimson")
+                .event-name.right Failed Login Attempt
+            .event3
+              .time-box.left 
+                .date 08-05-14
+                .time-of-day 4:00pm
+              .event-box.right
+                .icon-label.left
+                  i.fa.fa-user(style="color:darkseagreen")
+                .event-name.right New User Added
+            .event4
+              .time-box.left 
+                .date 08-05-14
+                .time-of-day 4:10pm
+              .event-box.right
+                .icon-label.left
+                  i.fa.fa-fire(style="color:gold")
+                .event-name.right New Peak Reached
+            .event5
+              .time-box.left 
+                .date 08-05-14
+                .time-of-day 4:10pm
+              .event-box.right
+                .icon-label.left
+                  i.fa.fa-fire(style="color:gold")
+                .event-name.right New Peak Reached
+        li.no-dots(data-li="22" data-row="8", data-col="8", data-sizex="3", data-sizey="2")
+          .title
+            span.left(data-name="22") Apps Shortcut
+            span.right
+              //- a(href='#')#refresh
+              //-   i.fa.fa-refresh 
+              a(href="#" data-anchor-click="22" data-reveal-id="edit-delete-modal").anchor-click
+                i.fa.fa-cog
+          #apps-shortcut
+              a(href="#").left
+                img(src="./dashboard/images/coupons.png")
+              a(href="#").left
+                img(src="./dashboard/images/geo_couponing.png")
+              a(href="#").left
+                img(src="./dashboard/images/marketing_tool.png")
+              a(href="#").left
+                img(src="./dashboard/images/nearby.png")
+              a(href="#").left
+                img(src="./dashboard/images/spot_news.png")
+              a(href="#").left
+                img(src="./dashboard/images/weather.png")
+              a(href="#").left
+                img(src="./dashboard/images/survey_pro.png")
+              a(href="#").left
+                img(src="./dashboard/images/presence.png")
       //- .content#impression
       //-   #impression-charts
       //-   #impression-data

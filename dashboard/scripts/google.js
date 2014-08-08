@@ -789,52 +789,52 @@
     //       var chart = new google.visualization.GeoChart(document.getElementById('traffic-charts'));
     //       chart.draw(data, options);
     //     };
-      function drawHotspotMapsWidget(){
-        $.get('https://controlpaneleuprimary.cloud4wi.com/dashboardapi/map.php', function(info,success){
-          if(!success){
-            console.log('There was an error with the request')
-          } else {
-            var keys = Object.keys(info);
-            var mapArray = [['Country', 'Hotspots']];
-            for (var i = 0, x=keys.length; i < x; i++) {
-              var val = info[keys[i]];
-              mapArray.push([keys[i], parseInt(val)])
-            };
-            var data = google.visualization.arrayToDataTable(mapArray);
-            var options = {
-              chartArea:{width:"80%",height:"80%"},
-              colorAxis: {
-                colors: ['#a0bdf2', '#6495ED', '#055dfa']
-              }
-            };
-            var chart = new google.visualization.GeoChart(document.getElementById('hotspot-maps-widget'))
-            chart.draw(data,options)
-          }
-        });
-      }
-      function drawHotspotMapsWidget2(){
-        $.get('https://controlpaneleuprimary.cloud4wi.com/dashboardapi/map.php', function(info,success){
-          if(!success){
-            console.log('There was an error with the request')
-          } else {
-            var keys = Object.keys(info);
-            var mapArray = [['Country', 'Hotspots']];
-            for (var i = 0, x=keys.length; i < x; i++) {
-              var val = info[keys[i]];
-              mapArray.push([keys[i], parseInt(val)])
-            };
-            var data = google.visualization.arrayToDataTable(mapArray);
-            var options = {
-              chartArea:{width:"80%",height:"80%"},
-              colorAxis: {
-                colors: ['#a0bdf2', '#6495ED', '#055dfa']
-              }
-            };
-            var chart = new google.visualization.GeoChart(document.getElementById('chart9'))
-            chart.draw(data,options)
-          }
-        });
-      }
+      // function drawHotspotMapsWidget(){
+      //   $.get('https://controlpaneleuprimary.cloud4wi.com/dashboardapi/map.php', function(info,success){
+      //     if(!success){
+      //       console.log('There was an error with the request')
+      //     } else {
+      //       var keys = Object.keys(info);
+      //       var mapArray = [['Country', 'Hotspots']];
+      //       for (var i = 0, x=keys.length; i < x; i++) {
+      //         var val = info[keys[i]];
+      //         mapArray.push([keys[i], parseInt(val)])
+      //       };
+      //       var data = google.visualization.arrayToDataTable(mapArray);
+      //       var options = {
+      //         chartArea:{width:"80%",height:"80%"},
+      //         colorAxis: {
+      //           colors: ['#a0bdf2', '#6495ED', '#055dfa']
+      //         }
+      //       };
+      //       var chart = new google.visualization.GeoChart(document.getElementById('hotspot-maps-widget'))
+      //       chart.draw(data,options)
+      //     }
+      //   });
+      // }
+      // function drawHotspotMapsWidget2(){
+      //   $.get('https://controlpaneleuprimary.cloud4wi.com/dashboardapi/map.php', function(info,success){
+      //     if(!success){
+      //       console.log('There was an error with the request')
+      //     } else {
+      //       var keys = Object.keys(info);
+      //       var mapArray = [['Country', 'Hotspots']];
+      //       for (var i = 0, x=keys.length; i < x; i++) {
+      //         var val = info[keys[i]];
+      //         mapArray.push([keys[i], parseInt(val)])
+      //       };
+      //       var data = google.visualization.arrayToDataTable(mapArray);
+      //       var options = {
+      //         chartArea:{width:"80%",height:"80%"},
+      //         colorAxis: {
+      //           colors: ['#a0bdf2', '#6495ED', '#055dfa']
+      //         }
+      //       };
+      //       var chart = new google.visualization.GeoChart(document.getElementById('chart9'))
+      //       chart.draw(data,options)
+      //     }
+      //   });
+      // }
       function drawPieChartWidget(){
         $.get('https://controlpaneleuprimary.cloud4wi.com/dashboardapi/pie.php', function(info, success){
           if(!success){
@@ -1213,6 +1213,20 @@
     var chart = new google.visualization.ColumnChart(document.getElementById('new-customer-sources-widget'));
     chart.draw(data, options);
   };
+  function drawHotspotMapsWidget() {
+    var myLatlng = new google.maps.LatLng(43.7166667,10.3833333);
+    var mapOptions = {
+      zoom: 14,
+      center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById('hotspot-maps-widget'), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Hello World!'
+    });
+  }
       // function drawBaseChart() {
       // // var titleHeight = $('.gridster li:eq(1) .title').height();
       // // var liHeight = $('.gridster li:eq(1)').height();
