@@ -929,7 +929,7 @@
       table.draw(data, options);
       });  
   };
-  function drawWifiArea(){
+  function drawWifiAreaWidget(){
     var options = {
       cssClassNames: {
         headerRow: 'google-table-header'

@@ -51,7 +51,6 @@ $(function(){
   var loadGrid = function(){
     gridster.remove_all_widgets();
     var a = JSON.parse(localStorage.cloudWidgetArray);
-    console.log(a);
     for (var i = 0; i < a[0].length; i++) {
       gridster.add_widget(a[0][i], a[1][i], a[2][i], a[3][i], a[4][i]);
     };
@@ -115,7 +114,6 @@ $(function(){
     var row = [];
     var master = [];
     $('.gridster li').not('.preview-holder').clone().each(function(){
-        console.log($(this));
         $(this).find('span.gs-resize-handle').remove();
         $(this).find('div[id]').empty();
         html.push($(this).wrapAll('<div></div>').parent().html());
@@ -125,7 +123,6 @@ $(function(){
         row.push($(this).data('row'));
       });
     master.push(html,sizex,sizey,col,row);
-    console.log(master);
     localStorage['cloudWidgetArray'] = JSON.stringify(master);
   };
   var ddCheck = function(){
@@ -214,7 +211,6 @@ $(function(){
       $('[data-name=' + globalClick + ']').html(name);
     };
     var radioSelected = $('#sort-by-input ins.slider-level:hidden').data('radio');
-    console.log(radioSelected)
     chartDraw(globalClick, radioSelected);
     $('[data-li='+globalClick+']').attr('data-refresh', radioSelected);
     $('#sort-by-modal').foundation('reveal', 'close');
@@ -334,7 +330,7 @@ $(function(){
     }    
     if($('#wifi-area-widget').length>0){
       var sortBy = $('[data-li=5]').data('refresh')
-      drawWifiArea(sortBy || "daily");    
+      drawWifiAreaWidget(sortBy || "daily");    
     }
     if($('#comparison-widget').length>0){
       var sortBy = $('[data-li=6]').data('refresh')
@@ -370,24 +366,15 @@ $(function(){
       var sortBy = $('[data-li=13]').data('refresh')
       drawCustomerSourcesWidget();    
     }
-    if($('#customer-devices-widget').length>0){
+    if($('#daily-average-session-time-widget').length>0){
       var sortBy = $('[data-li=14]').data('refresh')
-      drawCustomerDevicesWidget();    
+      drawDailyAverageSessionTimeWidget();    
     }
-    if($('#customer-devices-widget-table').length>0){
-      drawCustomerDevicesWidgetTable();    
+    if($('#new-customer-sources-widget').length>0){
+      drawNewCustomerSourcesWidget();    
     }
-
   };
   // Submit Handler for Comparison Widget with base data, comparison data, and interval
-  $('#submit-compare').click(function(){
-    var base = $('select[name=base]').val();
-    var compare = $('select[name=compare]').val();
-    var radioSelected = $('#compare-sort ins.slider-level:hidden').data('radio');
-    $('[data-li='+globalClick+']').data({refresh: radioSelected});
-    drawComparisonWidget(base,compare,radioSelected);
-    $('#base-compare-modal').foundation('reveal', 'close');
-  });
   setTimeout(function(){
     refreshAll();
   }, 500);
@@ -399,35 +386,42 @@ $(function(){
     if(wid===1){
       drawImpressionsWidget($('[data-li=1]').data('refresh')||"daily");
     }
-    if(wid===2){
-      drawImpressionsWidget2($('[data-li=2]').data('refresh')||"daily");
-    }
     if(wid===3){
-      drawImpressionsWidget3($('[data-li=3]').data('refresh')||"daily");
+      drawHotspotMapsWidget();
     }
     if(wid===4){
-      drawTable($('[data-li=4]').data('refresh')||"daily");
+      drawPieChartWidget();
     }
     if(wid===5){
-      drawHotspotMapsWidget($('[data-li=5]').data('refresh')||"daily");
+      drawWifiAreaWidget();
     }
     if(wid===6){
-      drawPieChartWidget($('[data-li=6]').data('refresh')||"daily");
-    }
-    if(wid===7){
-      drawPieChartWidget2($('[data-li=7]').data('refresh')||"daily");
+      drawComparisonWidget("impressions", "new-users", "daily");
     }
     if(wid===8){
-      drawTable2($('[data-li=8]').data('refresh')||"daily");
+      drawCustomerLoyaltyWidget();
     }
     if(wid===9){
-      drawHotspotMapsWidget2($('[data-li=9]').data('refresh')||"daily");
+      drawDemographicsWidget();
     }
     if(wid===10){
-      drawWifiArea($('[data-li=10]').data('refresh')||"daily");
+      drawCustomerDevicesWidget();
+      drawCustomerDevicesWidgetTable();
     }
     if(wid===11){
-      drawComparisonWidget("impressions", "new-users", $('[data-li=11]').data('refresh')||"daily")
+      drawCustomerSourcesWidget();
+    }
+    if(wid===12){
+      drawDaytimeLoyaltyWidget();
+    }
+    if(wid===13){
+      drawLiveViewWidget();
+    }
+    if(wid===14){
+      drawDailyAverageSessionTimeWidget();
+    }
+    if(wid===15){
+      drawNewCustomerSourcesWidget();
     }
     
   };
