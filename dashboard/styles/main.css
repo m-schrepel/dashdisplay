@@ -247,16 +247,16 @@ ul.tabs.vertical{
 	background-color: #055dfa;
 	margin: 10px;
 }
-#demographics-right{
+.demographics-right{
 	float: right;
 	width: 30%;
 }
-#demographics-right span{
+.demographics-right span{
 	text-align: right;
 	display: block;
 	line-height: 250%;
 }
-#demographics-right span i{
+.demographics-right span i{
 	font-size: 2.5em;
 	margin-right: 10px;
 	float: left;

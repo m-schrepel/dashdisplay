@@ -53,7 +53,6 @@ $(function(){
     var a = JSON.parse(localStorage.cloudWidgetArray);
     console.log(a);
     for (var i = 0; i < a[0].length; i++) {
-      // gridster.add_widget(a[i].allHtml, a[i].size_x, a[i].size_y, a[i].col, a[i].row)
       gridster.add_widget(a[0][i], a[1][i], a[2][i], a[3][i], a[4][i]);
     };
   };
@@ -321,77 +320,58 @@ $(function(){
     if($('#impressions-widget').length>0){
       var sortBy = $('[data-li=1]').data('refresh')
       drawImpressionsWidget(sortBy || "daily");
-    }    
-    if($('#new-users-widget').length>0){
+    }      
+    if($('.overview-box').length>0){
       var sortBy = $('[data-li=2]').data('refresh')
-      drawImpressionsWidget2(sortBy || "daily");
-    }     
-    if($('#online-users-widget').length>0){
-      var sortBy = $('[data-li=3]').data('refresh')
-      drawImpressionsWidget3(sortBy || "daily");
-    }    
-    if($('#table-widget').length>0){
-      var sortBy = $('[data-li=4]').data('refresh')
-      drawTable(sortBy || "daily");
+      // drawOverview();
     }    
     if($('#hotspot-maps-widget').length>0){
-      var sortBy = $('[data-li=5]').data('refresh')
-      drawHotspotMapsWidget(sortBy || "daily");
+      drawHotspotMapsWidget();
     }    
     if($('#pie-chart-widget').length>0){
-      var sortBy = $('[data-li=6]').data('refresh')
-      drawPieChartWidget(sortBy || "daily");
+      var sortBy = $('[data-li=4]').data('refresh')
+      drawPieChartWidget();
     }    
-    if($('#chart7').length>0){
-      var sortBy = $('[data-li=7]').data('refresh')
-      drawPieChartWidget2(sortBy || "daily");
-    }    
-    if($('#chart8').length>0){
-      var sortBy = $('[data-li=8]').data('refresh')
-      drawTable2(sortBy || "daily");
-    } 
-    // if($('#chart9').length>0){
-    //   var sortBy = $('[data-li=9]').data('refresh')
-    //   drawHotspotMapsWidget2(sortBy || "daily");    
-    // }
     if($('#wifi-area-widget').length>0){
-      var sortBy = $('[data-li=10]').data('refresh')
+      var sortBy = $('[data-li=5]').data('refresh')
       drawWifiArea(sortBy || "daily");    
     }
     if($('#comparison-widget').length>0){
-      var sortBy = $('[data-li=11]').data('refresh')
+      var sortBy = $('[data-li=6]').data('refresh')
       drawComparisonWidget("impressions","new-users","daily");    
     }
     if($('#customer-loyalty-widget').length>0){
-      var sortBy = $('[data-li=13]').data('refresh')
+      var sortBy = $('[data-li=8]').data('refresh')
       drawCustomerLoyaltyWidget();    
     }
-    if($('#daily-average-session-time-widget').length>0){
-      var sortBy = $('[data-li=19]').data('refresh')
-      drawDailyAverageSessionTimeWidget();    
-    }
-    if($('#new-customer-sources-widget').length>0){
-      var sortBy = $('[data-li=20]').data('refresh')
-      drawNewCustomerSourcesWidget();    
-    }
-    if($('#live-view-widget').length>0){
-      var sortBy = $('[data-li=18]').data('refresh')
-      drawLiveViewWidget();    
-    }
-    if($('#daytime-loyalty-widget').length>0){
-      var sortBy = $('[data-li=17]').data('refresh')
-      drawDaytimeLoyaltyWidget();    
-    }
     if($('#demographics-widget').length>0){
-      var sortBy = $('[data-li=14]').data('refresh')
+      var sortBy = $('[data-li=9]').data('refresh')
       drawDemographicsWidget();    
     }
+    if($('#customer-devices-widget').length>0){
+      var sortBy = $('[data-li=10]').data('refresh')
+      drawCustomerDevicesWidget();
+      drawCustomerDevicesWidgetTable();    
+    }
     if($('#customer-sources-widget').length>0){
-      var sortBy = $('[data-li=16]').data('refresh')
+      var sortBy = $('[data-li=11]').data('refresh')
+      drawCustomerSourcesWidget();
+      drawCustomerDevicesWidgetTable();    
+    }
+    if($('#daytime-loyalty-widget').length>0){
+      var sortBy = $('[data-li=12]').data('refresh')
+      drawDaytimeLoyaltyWidget();    
+    }
+    if($('#live-view-widget').length>0){
+      var sortBy = $('[data-li=13]').data('refresh')
+      drawLiveViewWidget();   
+    }
+    if($('#customer-sources-widget').length>0){
+      var sortBy = $('[data-li=13]').data('refresh')
       drawCustomerSourcesWidget();    
     }
     if($('#customer-devices-widget').length>0){
-      var sortBy = $('[data-li=15]').data('refresh')
+      var sortBy = $('[data-li=14]').data('refresh')
       drawCustomerDevicesWidget();    
     }
     if($('#customer-devices-widget-table').length>0){
